@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -18,9 +19,15 @@ func main() {
 
 	router.HandleFunc("GET /", handleHome)
 
+	fmt.Println("running")
 	server.ListenAndServe()
 }
 
+type jaysahn struct {
+	message string
+}
+
 func handleHome(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Welcome home"))
+	m, _ := json.Marshal(jaysahn{message: "Welcome home"})
+	w.Write(m)
 }

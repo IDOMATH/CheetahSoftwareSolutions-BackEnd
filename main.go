@@ -23,11 +23,11 @@ func main() {
 	server.ListenAndServe()
 }
 
-type jaysahn struct {
-	message string
+type msg struct {
+	Message string `json:"message"`
 }
 
 func handleHome(w http.ResponseWriter, r *http.Request) {
-	m, _ := json.Marshal(jaysahn{message: "Welcome home"})
+	m, _ := json.Marshal(msg{Message: "Welcome home!"})
 	w.Write(m)
 }

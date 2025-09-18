@@ -18,6 +18,7 @@ func main() {
 	}
 
 	router.HandleFunc("GET /", handleHome)
+	router.HandleFunc("GET /projects", handleProjects)
 
 	fmt.Println("running")
 	server.ListenAndServe()
@@ -30,4 +31,8 @@ type msg struct {
 func handleHome(w http.ResponseWriter, r *http.Request) {
 	m, _ := json.Marshal(msg{Message: "Welcome home!"})
 	w.Write(m)
+}
+
+func handleProjects(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusNotFound)
 }
